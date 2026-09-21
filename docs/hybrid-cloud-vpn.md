@@ -28,6 +28,24 @@ hybrid-cloud-lab-vpc
 
 The Ubuntu Server is still the router for the local client. The new piece is an encrypted IPsec path from that router into AWS.
 
+## Local validation milestone
+
+Before using the AWS tunnel, I built and completed a local site-to-site IPsec version of the path with a second Linux gateway and a simulated cloud workload.
+
+That validation covered the pieces I wanted to understand before adding cloud-provider routing:
+
+- IKEv2 and CHILD SA establishment
+- XFRM policy and state
+- nftables forwarding and VPN NAT exemption
+- return-route troubleshooting
+- packet capture across the cloud-side interface
+- Linux network namespaces and veth pairs
+- reboot persistence on both gateways
+
+The final local test passed end to end from `10.10.10.10` to `10.20.0.10` with 0% packet loss after rebooting the lab components.
+
+[Read the local site-to-site IPsec validation →](local-site-to-site-ipsec-validation.md)
+
 ## Local side
 
 The existing lab already provides:
