@@ -51,26 +51,27 @@ The client has no direct NAT adapter. It reaches external networks through the U
 
 One of the useful parts of this lab was being able to trace the same connection across layers: client route, server forwarding decision, NAT, DNS, service reachability, and finally the packets themselves in tcpdump.
 
+## Site-to-site IPsec validation
+
+Before continuing into AWS, I built a local stand-in for the cloud side so I could troubleshoot the complete VPN path without treating IPsec as a black box.
+
+The Ubuntu Client at `10.10.10.10` now reaches a simulated cloud workload at `10.20.0.10` through a strongSwan IKEv2/IPsec tunnel between two routed Linux gateways. I verified the path with XFRM state, nftables counters, tcpdump, routing lookups, ARP state, and end-to-end ICMP.
+
+The lab also survives reboot: strongSwan auto-starts, nftables reloads the VPN NAT exemption, and a systemd service recreates the fake cloud namespace and veth network.
+
+[Read the local IPsec validation notes →](docs/local-site-to-site-ipsec-validation.md)
+
 ## Hybrid cloud extension
 
-I am now extending this lab into AWS with a real IPsec Site-to-Site VPN.
+The next phase is applying the same packet-by-packet troubleshooting method to AWS Site-to-Site VPN.
 
-The Ubuntu Server is becoming the on-premises VPN endpoint with strongSwan, while an AWS Virtual Private Gateway provides the cloud side. The local network is `10.10.10.0/24` and the AWS VPC is `10.20.0.0/16`.
+The Ubuntu Server remains the on-premises VPN endpoint with strongSwan. The AWS side adds a Virtual Private Gateway, Customer Gateway, VPC routing, security controls, and a real cloud workload.
 
-Current work includes:
-
-- strongSwan IPsec on the Ubuntu router
-- AWS Virtual Private Gateway
-- AWS Customer Gateway
-- static Site-to-Site VPN routing
-- AWS VPC routing and security controls
-- end-to-end packet-flow validation
-
-[Read the hybrid VPN build notes →](docs/hybrid-cloud-vpn.md)
+[Read the AWS hybrid VPN build notes →](docs/hybrid-cloud-vpn.md)
 
 ## Tools
 
-Ubuntu Server · Ubuntu Desktop · VirtualBox · Netplan · nftables · OpenSSH · Apache · tcpdump · curl · strongSwan · AWS VPC · AWS Site-to-Site VPN
+Ubuntu Server · Ubuntu Desktop · VirtualBox · Linux network namespaces · veth · Netplan · nftables · systemd · OpenSSH · Apache · tcpdump · curl · strongSwan · Linux XFRM · AWS VPC · AWS Site-to-Site VPN
 
 ## Example service test
 
