@@ -98,7 +98,7 @@ The hybrid extension is adding a new lesson: a VPN can be healthy as a service w
 
 The same ideas show up in my newer work:
 
-- [Hybrid Cloud VPN Extension](docs/hybrid-cloud-vpn.md) — strongSwan, IPsec, AWS Site-to-Site VPN, hybrid routing
-- [Mini Internet](https://github.com/PatienceEnoch/mini-internet) — BGP, alternate paths, convergence, failure testing
-- [Network Flight Recorder](https://github.com/PatienceEnoch/network-flight-recorder) — state capture, diagnosis, incident evidence, recovery verification
-- [Cloud Network Architecture Journal](https://github.com/PatienceEnoch/Cloud-Network-Architecture-Journal) — architecture and routing notes
+- [Hybrid Cloud VPN Extension](docs/hybrid-cloud-vpn.md): strongSwan, IPsec, AWS Site-to-Site VPN, hybrid routing
+- [Mini Internet](https://github.com/PatienceEnoch/mini-internet): BGP, alternate paths, convergence, failure testing
+- [Network Flight Recorder](https://github.com/PatienceEnoch/network-flight-recorder): state capture, diagnosis, incident evidence, recovery verification
+- [Cloud Network Architecture Journal](https://github.com/PatienceEnoch/Cloud-Network-Architecture-Journal): architecture and routing notes
